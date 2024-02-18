@@ -23,9 +23,7 @@ jobs:
         dir
         cd src
         pwd
-      
-    - name: Restore NuGet packages
-      run: dotnet restore ../ChocolateyGui.sln # Adjust the solution file name if necessary
+        dotnet restore ChocolateyGui.sln
       
     - name: Build WiX MSI installer project
       run: |
