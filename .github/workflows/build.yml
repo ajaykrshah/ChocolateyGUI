@@ -17,17 +17,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
      
-    - name: Change to the directory containing the solution file and nuget restore
+    - name: Change Directory | nuget restore | Build Projects of the Solution | Create MSI installer
       run: |
         cd src
         nuget restore
-    
-    - name: Build Projects of the Solution
-      run: |
         dotnet build /t:Rebuild /p:Configuration=Release
-
-    - name: Create MSI installer by building the WIX project
-      run: |
         dotnet build ChocolateyGui.Install\ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
         
     - name: Publish MSI installer
