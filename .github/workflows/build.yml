@@ -21,23 +21,14 @@ jobs:
       run: |
         cd src
         nuget restore
-        
-    - name: Find MSBuild
-      id: find-msbuild
-      run: |
-        $msbuildPath = (Get-Command msbuild).Source
-        echo "::set-output name=msbuildPath::$msbuildPath"
-      shell: pwsh
     
     - name: Build Projects of the Solution
       run: |
-        "${{ steps.find-msbuild.outputs.msbuildPath }}" /t:Rebuild /p:Configuration=Release
-      shell: cmd
+        dotnet build /t:Rebuild /p:Configuration=Release
 
     - name: Create MSI installer by building the WIX project
       run: |
-        "${{ steps.find-msbuild.outputs.msbuildPath }}" ChocolateyGui.Install\ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
-      shell: cmd
+        dotnet build ChocolateyGui.Install\ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
         
     - name: Publish MSI installer
       uses: actions/upload-artifact@v2
