@@ -20,7 +20,13 @@ jobs:
       run: cd src
       
     - name: Restore NuGet packages
-      run: dotnet restore
+      run: dotnet restore ChocolateyGui.sln # Adjust the solution file name if necessary
+      
+    - name: Build WiX MSI installer project
+      run: |
+        # Build the WiX project
+        msbuild src/ChocolateyGui.Install/ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
+        
       
     - name: Build WiX MSI installer project
       run: |
