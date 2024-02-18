@@ -17,10 +17,12 @@ jobs:
         dotnet-version: '7.0' # Adjust this version as required
 
     - name: Change to the directory containing the solution file
-      run: cd src
+      run: |
+        echo "Current directory: $(pwd)"
+        cd src
       
     - name: Restore NuGet packages
-      run: dotnet restore ChocolateyGui.sln # Adjust the solution file name if necessary
+      run: dotnet restore ../ChocolateyGui.sln # Adjust the solution file name if necessary
       
     - name: Build WiX MSI installer project
       run: |
