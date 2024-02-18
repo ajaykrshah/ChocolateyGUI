@@ -8,17 +8,19 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
+     
     - name: Setup .NET environment
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '7.0' # Adjust this version as required
 
+    - name: Checkout code
+      uses: actions/checkout@v2
+     
     - name: Change to the directory containing the solution file
       run: |
-        echo "Current directory: $(pwd)"
+        pwd
+        dir
         cd src
       
     - name: Restore NuGet packages
