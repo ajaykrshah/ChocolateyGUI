@@ -21,8 +21,8 @@ jobs:
       run: |
         cd src
         nuget restore
-        dotnet build /t:Rebuild /p:Configuration=Debug
-        dotnet build ChocolateyGui.Install\ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Debug
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\msbuild.exe" /t:Rebuild /p:Configuration=Debug
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\msbuild.exe" ChocolateyGui.Install\ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Debug
         
     - name: Publish MSI installer
       uses: actions/upload-artifact@v2
