@@ -23,7 +23,7 @@ jobs:
         nuget restore
       
     - name: Build Solution and Create MSI installer
-      shell: cmd
+      shell: pwsh
       run: |
         msbuild  /t:Rebuild /p:Configuration=Release
         msbuild ChocolateyGui.Install/ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
