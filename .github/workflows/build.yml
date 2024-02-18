@@ -20,20 +20,13 @@ jobs:
     - name: Change to the directory containing the solution file and nuget restore
       run: |
         cd src
-        pwd
         nuget restore
       
     - name: Build Solution and Create MSI installer
+      shell: cmd
       run: |
-        shell: cmd
         msbuild  /t:Rebuild /p:Configuration=Release
         msbuild ChocolateyGui.Install/ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
-        
-      
-    - name: Build WiX MSI installer project
-      run: |
-        # Build the WiX project
-        msbuild ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
         
     - name: Publish MSI installer
       uses: actions/upload-artifact@v2
