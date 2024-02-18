@@ -25,7 +25,7 @@ jobs:
       
     - name: Build Solution and Create MSI installer
       run: |
-        # Build the WiX project
+        shell: cmd
         msbuild  /t:Rebuild /p:Configuration=Release
         msbuild ChocolateyGui.Install/ChocolateyGui.Install.wixproj /t:Rebuild /p:Configuration=Release
         
