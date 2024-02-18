@@ -22,6 +22,7 @@ jobs:
         pwd
         dir
         cd src
+        pwd
       
     - name: Restore NuGet packages
       run: dotnet restore ../ChocolateyGui.sln # Adjust the solution file name if necessary
